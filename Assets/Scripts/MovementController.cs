@@ -19,10 +19,10 @@ public class MovementController : MonoBehaviour
 
     void Update()
     {
-        velocityY += Physics.gravity.y * gravityMultiplier;
-        if (controller.isGrounded)
+        velocityY += Physics.gravity.y * (gravityMultiplier / 1000);
+        if (controller.isGrounded && velocityY < 0)
         {
-            velocityY = 0f;
+            velocityY = -1f;
         }
 
         Vector3 movement = moveInput.y * transform.forward + moveInput.x * transform.right;

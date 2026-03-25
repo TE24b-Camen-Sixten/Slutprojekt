@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PickUpController : MonoBehaviour
@@ -7,10 +6,13 @@ public class PickUpController : MonoBehaviour
     Camera camera;
     [SerializeField]
     GameObject gun;
+    [SerializeField]
+    GameObject shotgun;
 
     void Start()
     {
         gun.SetActive(false);
+        shotgun.SetActive(false);
     }
     void OnInteract()
     {
@@ -22,8 +24,16 @@ public class PickUpController : MonoBehaviour
         }
     }
 
-    public void SetGunActive()
+    public void SetGunActive(string name)
     {
-        gun.SetActive(true);
+        print(name + "recived");
+        if(name == "gun")
+        {
+            gun.SetActive(true);
+        }
+        else if (name == "shotgun")
+        {
+            shotgun.SetActive(true);
+        }
     }
 }
