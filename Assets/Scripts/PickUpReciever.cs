@@ -14,7 +14,7 @@ public class PickUpReciever : MonoBehaviour
         Vector3 direction = (player.transform.position - transform.position).normalized;
         if (Physics.Raycast(transform.position, direction, out answer, 10))
         {
-            answer.transform.TryGetComponent<PickUpController>(out controller);
+            answer.transform.TryGetComponent(out controller);
             if (gameObject.name == "GunPickUp")
             {
                 print("sendback gun");  

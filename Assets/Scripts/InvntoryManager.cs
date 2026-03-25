@@ -1,16 +1,33 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InvntoryManager : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+{   
+    [SerializeField]
+    GameObject gun;
+    [SerializeField]
+    GameObject shotgun;
+    
+    public bool haveGun = false;
+    public bool haveShotgun = false;
+
+    public void pickedUpGun()
     {
-        
+        if (haveGun && haveShotgun)
+        {
+            gun.SetActive(false);
+            shotgun.SetActive(true);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnPress1()
     {
-        
+        shotgun.SetActive(true);
+        gun.SetActive(false);
+    }
+    void OnPress2()
+    {
+        shotgun.SetActive(false);
+        gun.SetActive(true);
     }
 }

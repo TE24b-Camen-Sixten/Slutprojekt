@@ -9,6 +9,8 @@ public class PickUpController : MonoBehaviour
     [SerializeField]
     GameObject shotgun;
 
+    InvntoryManager inventory;
+
     void Start()
     {
         gun.SetActive(false);
@@ -26,14 +28,19 @@ public class PickUpController : MonoBehaviour
 
     public void SetGunActive(string name)
     {
+        inventory = GetComponentInParent<InvntoryManager>();
+
         print(name + "recived");
         if(name == "gun")
         {
             gun.SetActive(true);
+            inventory.haveGun = true;
         }
         else if (name == "shotgun")
         {
             shotgun.SetActive(true);
+            inventory.haveShotgun = true;
         }
+        inventory.pickedUpGun();
     }
 }
