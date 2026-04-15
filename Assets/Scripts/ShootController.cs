@@ -1,5 +1,5 @@
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class ShootController : MonoBehaviour
 {
@@ -12,8 +12,15 @@ public class ShootController : MonoBehaviour
             RaycastHit target;
             if(Physics.Raycast(transform.position, transform.forward, out target, 50))
             {
-                Vector3 targetPos = target.transform.position;
-                GetComponentInChildren<GunController>().Shoot(targetPos);
+                Vector3 targetPos = target.point;
+                try
+                {
+                    GetComponentInChildren<GunController>().Shoot(targetPos);
+                }
+                catch (System.NullReferenceException)
+                {
+                    GetComponentInChildren<ShotgunController>().Shoot();
+                }
             } 
         }
     }
