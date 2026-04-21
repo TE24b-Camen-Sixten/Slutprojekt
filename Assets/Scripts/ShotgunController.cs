@@ -7,6 +7,6 @@ public class ShotgunController : MonoBehaviour
     public void Shoot()
     {
         print("po e bog");
-        Instantiate(skott, transform.position, transform.rotation);
+        Instantiate(skott, transform.position, transform.rotation * Quaternion.Euler(90, 0, 0));
     }
 }

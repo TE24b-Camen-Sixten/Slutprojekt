@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public class ShootController : MonoBehaviour
@@ -10,18 +10,21 @@ public class ShootController : MonoBehaviour
         if (alternator % 2 == 0) // ser till att det bara skjuter när man klickar ner, inte släpper upp knappen.
         {
             RaycastHit target;
-            if(Physics.Raycast(transform.position, transform.forward, out target, 50))
+            if (Physics.Raycast(transform.position, transform.forward, out target, 50))
             {
                 Vector3 targetPos = target.point;
                 try
                 {
                     GetComponentInChildren<GunController>().Shoot(targetPos);
                 }
-                catch (System.NullReferenceException)
-                {
-                    GetComponentInChildren<ShotgunController>().Shoot();
-                }
-            } 
+                catch(NullReferenceException) { }
+            }
+
+            try
+            {
+                GetComponentInChildren<ShotgunController>().Shoot();
+            }
+            catch(NullReferenceException) { }
         }
     }
 }
