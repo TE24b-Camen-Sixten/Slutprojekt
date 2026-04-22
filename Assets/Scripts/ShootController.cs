@@ -18,13 +18,23 @@ public class ShootController : MonoBehaviour
                     GetComponentInChildren<GunController>().Shoot(targetPos);
                 }
                 catch(NullReferenceException) { }
+                try
+                {
+                    GetComponentInChildren<ShotgunController>().Shoot(targetPos);
+                }
+                catch(NullReferenceException) { }
+            }
+            else
+            {
+                Vector3 noDir = new Vector3(0,0,0);
+                
+                try
+                {
+                    GetComponentInChildren<ShotgunController>().Shoot(noDir);
+                }
+                catch(NullReferenceException) { }
             }
 
-            try
-            {
-                GetComponentInChildren<ShotgunController>().Shoot();
-            }
-            catch(NullReferenceException) { }
         }
     }
 }

@@ -4,9 +4,9 @@ public class ShotgunController : MonoBehaviour
 {
     [SerializeField]
     GameObject skott;
-    public void Shoot()
+    public void Shoot(Vector3 targetPos)
     {
-        print("po e bog");
-        Instantiate(skott, transform.position, transform.rotation * Quaternion.Euler(90, 0, 0));
+        Vector3 direction = (targetPos - transform.position).normalized;
+        Instantiate(skott, transform.position, Quaternion.LookRotation(direction));
     }
 }
