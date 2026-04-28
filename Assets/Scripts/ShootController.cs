@@ -27,7 +27,6 @@ public class ShootController : MonoBehaviour
             else
             {
                 Vector3 noDir = new Vector3(0,0,0);
-                
                 try
                 {
                     GetComponentInChildren<ShotgunController>().Shoot(noDir);
