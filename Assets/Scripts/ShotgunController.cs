@@ -11,26 +11,43 @@ public class ShotgunController : MonoBehaviour
     public void Shoot(Vector3 targetPos)
     {
 
-        if(targetPos == new Vector3(0, 0, 0))
+        if (targetPos == new Vector3(0, 0, 0))
         {
-            for (int i = 0; i < 10; i++)
-            {
-                float randomX = Random.Range(-spread, spread);
-                float randomY = Random.Range(-spread, spread);
-                float randomZ = Random.Range(-spread, spread);
-                Instantiate(skott, transform.position, transform.rotation * Quaternion.Euler(270, 0, 0) * Quaternion.Euler(randomX, randomY, randomZ));
-            }
+            ShootForward();
         }
         else
         {
             Vector3 direction = (targetPos - transform.position).normalized;
-            for (int i = 0; i < 10; i++)
+            if (Quaternion.LookRotation(direction).x > 10)
             {
-                float randomX = Random.Range(-spread, spread);
-                float randomY = Random.Range(-spread, spread);
-                float randomZ = Random.Range(-spread, spread);
-                Instantiate(skott, transform.position, Quaternion.LookRotation(direction) * Quaternion.Euler(randomX, randomY, randomZ));   
+                ShootForward();
             }
+            else
+            {
+                ShootTarget(direction);
+            }
+        }
+    }
+
+    void ShootForward()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            float randomX = Random.Range(-spread, spread);
+            float randomY = Random.Range(-spread, spread);
+            float randomZ = Random.Range(-spread, spread);
+            Instantiate(skott, transform.position, transform.rotation * Quaternion.Euler(270, 0, 0) * Quaternion.Euler(randomX, randomY, randomZ));
+        }
+    }
+
+    void ShootTarget(Vector3 direction)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            float randomX = Random.Range(-spread, spread);
+            float randomY = Random.Range(-spread, spread);
+            float randomZ = Random.Range(-spread, spread);
+            Instantiate(skott, transform.position, Quaternion.LookRotation(direction) * Quaternion.Euler(randomX, randomY, randomZ));
         }
     }
 }

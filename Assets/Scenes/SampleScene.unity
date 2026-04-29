@@ -952,6 +952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   skott: {fileID: 131613317771101347, guid: e5c1d8117e40bea4db1ddacec04f9f6d, type: 3}
+  spread: 10
 --- !u!1 &1341756809
 GameObject:
   m_ObjectHideFlags: 0
